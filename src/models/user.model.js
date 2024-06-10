@@ -1,8 +1,10 @@
 import mongoose, { Schema } from "mongoose";
 //import { jwt } from "jsonwebtoken";
 //import { bcrypt } from "bcrypt";
-import pkg from "bcrypt";
-const { bcrypt } = pkg;
+/*import pkg from "bcrypt";
+const { bcrypt } = pkg;*/
+//https://stackoverflow.com/questions/58055145/how-to-fix-typeerror-cannot-read-property-hash-of-undefined-during-hashing-pa
+import * as bcrypt from "bcrypt";
 
 import pkgJWT from "jsonwebtoken";
 const { jwt } = pkgJWT;
