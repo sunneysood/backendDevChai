@@ -30,7 +30,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
     throw new ApiError(400, "Full name is Empty, this field is required.");
   }
 
-  const existinguser = User.findOne({ $or: [{ userName }, { email }] });
+  const existinguser = await User.findOne({ $or: [{ userName }, { email }] });
   if (existinguser) {
     throw new ApiError(
       409,
@@ -54,15 +54,16 @@ const registerUser = asyncHandler(async (req, res, next) => {
     );
   }
 
+  let coverImageUpload = "";
   const coverImageFileLocalPath = req.files?.coverImage[0]?.path;
   if (coverImageFileLocalPath) {
-    const coverImageUpload = await uploadOnCloudinary(coverImageFileLocalPath);
+    coverImageUpload = await uploadOnCloudinary(coverImageFileLocalPath);
   }
 
   const user = await User.create({
     fullName,
-    avatar: avatar.url,
-    coverImage: coverImage?.url || "",
+    avatar: avatarUpload.url,
+    coverImage: coverImageUpload.url,
     email,
     password,
     userName: userName.toLowerCase(),
