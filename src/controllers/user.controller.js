@@ -110,7 +110,8 @@ const loginUser = asyncHandler(async (req, res) => {
 5. if accepted, generate access and refresh token
 6. send secure cookies */
 
-  console.log(req.body);
+  //console.log("I am inside user controller module");
+  //console.log(req.body);
 
   const { email, userName, password } = req.body;
 
@@ -118,9 +119,12 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "User Name or Email is required.");
   }
 
-  logger.info(email + " " + userName);
+  //logger.info(email + " " + userName);
 
-  const user = await User.findOne({ $or: [userName, email] });
+  const user = await User.findOne({
+    $or: [{ userName }, { email }],
+  });
+  logger.info(user);
 
   if (!user) {
     throw new ApiError(404, "User not found. Kindly register");

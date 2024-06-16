@@ -6,8 +6,9 @@ const { bcrypt } = pkg;*/
 //https://stackoverflow.com/questions/58055145/how-to-fix-typeerror-cannot-read-property-hash-of-undefined-during-hashing-pa
 import * as bcrypt from "bcrypt";
 
-import pkgJWT from "jsonwebtoken";
-const { jwt } = pkgJWT;
+//import pkgJWT from "jsonwebtoken";
+//const { jwt } = pkgJWT;
+import jwt from "jsonwebtoken";
 
 const userSchema = new Schema(
   {

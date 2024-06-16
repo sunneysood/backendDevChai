@@ -25,6 +25,7 @@ router.route("/register").post(
 //route for logging off user
 //router.route("/logOut").post(verifyJWT, logOutUser);
 
+//console.log(router);
 router.route("/login").post(loginUser);
 
 //secured routes
